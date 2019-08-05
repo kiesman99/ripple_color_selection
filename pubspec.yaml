@@ -1,8 +1,8 @@
 name: ripple_color_selection
 description: A simple color selection widget with a charming ripple effect
 version: 0.0.1
-author: Justin Vietz justin.vietz@gmx.de
-homepage: coming soon
+author: Justin Vietz <justin.vietz@gmx.de>
+homepage: https://github.com/kiesman99/ripple_color_selection
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
