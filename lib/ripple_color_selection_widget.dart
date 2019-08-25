@@ -240,4 +240,12 @@ class RippleColorSelectionState extends State<RippleColorSelection>
                   systemPadding.top));
     });
   }
+
+  @override
+  void dispose() {
+    _backgroundRippleAnimation.dispose();
+    for(ColorSelectionBorderAnimationHolder holder in _borderAnimations)
+      holder.controller.dispose();
+    super.dispose();
+  }
 }
