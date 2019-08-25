@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ripple_color_selection/ripple_color_selection.dart';
 
+/// This page has a [CircleTile] as tapable widget
+/// and a [RectangleTile] as the expanding widget, that
+/// will grow underneath the clicked color
 class FullyCustomPage extends StatelessWidget {
 
   ColorSelectionController _controller = new ColorSelectionController();
@@ -9,7 +12,8 @@ class FullyCustomPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: RippleColorSelection.customTile(
+        child: RippleColorSelection.custom(
+            rippleExpandDuration: const Duration(seconds: 10),
             controller: _controller,
             tileBuilder: (key, color, holder, value, onTap){
               return CircleTile(
@@ -19,7 +23,16 @@ class FullyCustomPage extends StatelessWidget {
                 colorSelectionValue: value,
                 key: key,
               );
-            }
+            },
+          rippleTileBuilder: (key, color, holder, value, onTap){
+            return RectangleTile(
+              color: color,
+              onTap: onTap,
+              borderAnimation: holder,
+              colorSelectionValue: value,
+              key: key,
+            );
+          },
         ),
       ),
     );
