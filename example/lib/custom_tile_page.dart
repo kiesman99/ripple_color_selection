@@ -10,6 +10,7 @@ class CustomTilePage extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: RippleColorSelection.customTile(
+            rippleExpandDuration: const Duration(milliseconds: 1500),
             controller: _controller,
             tileBuilder: (key, color, holder, value, onTap){
               return RectangleTile(
