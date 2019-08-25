@@ -22,6 +22,9 @@ typedef TileBuilder<Tile extends ColorSelectionTile> = Tile Function(
 /// create the ripple effect
 abstract class ColorSelectionTile extends StatelessWidget {
 
+
+
+  // Size of a tile
   Size get size => new Size(50.0, 50.0);
 
   CustomClipper get customClipper;
@@ -74,6 +77,13 @@ abstract class ColorSelectionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    if(borderAnimation == null)
+      return ClipPath(
+          clipper: customClipper,
+          child: actualTile
+      );
+
     return Padding(
         padding: EdgeInsets.all(padding),
         child: AnimatedBuilder(
