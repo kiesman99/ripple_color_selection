@@ -14,6 +14,8 @@ class RippleColorSelection extends StatefulWidget {
   final TileBuilder tileBuilder;
   final TileBuilder rippleTileBuilder;
 
+  final Duration rippleExpandDuration;
+
   static TileBuilder b = (key, color, animation, value, onTap) {
     return CircleTile(
       key: key,
@@ -24,18 +26,20 @@ class RippleColorSelection extends StatefulWidget {
     );
   };
 
-  RippleColorSelection({@required this.controller})
+  RippleColorSelection({@required this.controller, this.rippleExpandDuration = const Duration(seconds: 1)})
       : this.tileBuilder = b,
         this.rippleTileBuilder = b;
 
   RippleColorSelection.customTile({
     @required this.controller,
     @required this.tileBuilder,
+    this.rippleExpandDuration = const Duration(seconds: 1)
   }) : this.rippleTileBuilder = tileBuilder;
 
   RippleColorSelection.custom(
       {@required this.controller,
       @required this.tileBuilder,
+      this.rippleExpandDuration = const Duration(seconds: 1),
       @required this.rippleTileBuilder});
 
   @override
@@ -114,7 +118,7 @@ class RippleColorSelectionState extends State<RippleColorSelection>
     });
 
     _backgroundRippleAnimation =
-        new AnimationController(vsync: this, duration: Duration(seconds: 1));
+        new AnimationController(vsync: this, duration: widget.rippleExpandDuration);
 
     _backgroundRippleSizeAnimation = new Tween<double>(begin: 0.0, end: 100.0)
         .animate(_backgroundRippleAnimation);
@@ -169,6 +173,7 @@ class RippleColorSelectionState extends State<RippleColorSelection>
             child: AnimatedBuilder(
               animation: _backgroundRippleAnimation,
               builder: (context, child) {
+                // TODO: Make expanding relative to parent size. Currently the size the ripple will expand to is given by constant values -> make dynamic
                 return Transform.scale(
                   scale: _backgroundRippleSizeAnimation.value,
                   child: widget.rippleTileBuilder(
@@ -181,6 +186,7 @@ class RippleColorSelectionState extends State<RippleColorSelection>
               },
             ),
             builder: (context, value, child) {
+              // TODO: center the widget in relative position to the clicked tile. Previously there was a const size of the ripple tile, but now it behaves different
               return Transform.translate(
                   offset: _tapOffset.value, child: child);
             },
