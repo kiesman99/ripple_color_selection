@@ -3,6 +3,7 @@ library ripple_color_selection;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ripple_color_selection/widgets/tiles/circle_tile.dart';
+import 'package:ripple_color_selection/widgets/tiles/color_selection_tile.dart';
 
 import 'controller/color_selection_controller.dart';
 import 'holder_classes/color_selection_border_animation_holder.dart';
@@ -10,8 +11,32 @@ import 'holder_classes/color_selection_border_animation_holder.dart';
 @immutable
 class RippleColorSelection extends StatefulWidget {
   final ColorSelectionController controller;
+  final TileBuilder tileBuilder;
+  final TileBuilder rippleTileBuilder;
 
-  RippleColorSelection({@required this.controller});
+  static TileBuilder b = (key, color, animation, value, onTap) {
+    return CircleTile(
+      key: key,
+      color: color,
+      borderAnimation: animation,
+      colorSelectionValue: value,
+      onTap: onTap,
+    );
+  };
+
+  RippleColorSelection({@required this.controller})
+      : this.tileBuilder = b,
+        this.rippleTileBuilder = b;
+
+  RippleColorSelection.customTile({
+    @required this.controller,
+    @required this.tileBuilder,
+  }) : this.rippleTileBuilder = tileBuilder;
+
+  RippleColorSelection.custom(
+      {@required this.controller,
+      @required this.tileBuilder,
+      @required this.rippleTileBuilder});
 
   @override
   RippleColorSelectionState createState() => RippleColorSelectionState();
@@ -83,13 +108,13 @@ class RippleColorSelectionState extends State<RippleColorSelection>
           vsync: this, duration: Duration(milliseconds: 200));
 
       Animation animation =
-      Tween<double>(begin: 0.0, end: 5.0).animate(controller);
+          Tween<double>(begin: 0.0, end: 10.0).animate(controller);
 
       return ColorSelectionBorderAnimationHolder(controller, animation);
     });
 
     _backgroundRippleAnimation =
-    new AnimationController(vsync: this, duration: Duration(seconds: 1));
+        new AnimationController(vsync: this, duration: Duration(seconds: 1));
 
     _backgroundRippleSizeAnimation = new Tween<double>(begin: 0.0, end: 100.0)
         .animate(_backgroundRippleAnimation);
@@ -122,16 +147,19 @@ class RippleColorSelectionState extends State<RippleColorSelection>
     // so that there is no more border around the old selected tile
     if (_tappedPosition != -1) {
       _borderAnimations
-          .elementAt(_tappedPosition).controller
+          .elementAt(_tappedPosition)
+          .controller
           .reverse(from: 1.0);
     }
 
     _tappedPosition = position;
   }
 
+  TileBuilder builder;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Widget child = Container(
       color: _backgroundColor,
       child: Stack(
         overflow: Overflow.clip,
@@ -163,6 +191,8 @@ class RippleColorSelectionState extends State<RippleColorSelection>
         ],
       ),
     );
+
+    return child;
   }
 
   Widget _buildGridView() {
@@ -170,18 +200,17 @@ class RippleColorSelectionState extends State<RippleColorSelection>
       padding: EdgeInsets.all(20.0),
       itemCount: colors.length,
       gridDelegate:
-      SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5),
       itemBuilder: (context, position) {
         // generate a new key for each tile in the gridview
         GlobalKey key = new GlobalKey();
 
-        return CircleTile(
-          onTap: () => _didChangeColorValue(position, key),
-          borderAnimation: _borderAnimations.elementAt(position),
-          color: colors.elementAt(position),
-          colorSelectionValue: _value,
-          key: key,
-        );
+        return widget.tileBuilder(
+            key,
+            colors.elementAt(position),
+            _borderAnimations.elementAt(position),
+            _value,
+            () => _didChangeColorValue(position, key));
       },
     );
   }
@@ -198,8 +227,8 @@ class RippleColorSelectionState extends State<RippleColorSelection>
     final RenderBox tileRenderBox = key.currentContext.findRenderObject();
     setState(() {
       _tapOffset.value = tileRenderBox.localToGlobal(
-        // Maybe [systemPadding.top] needs to be changed to 24
-        // TODO: Change to [Offset(tileRenderBox.size.width / 2, tileRenderBox.size.height / 2] when bug is filed and corrected
+          // Maybe [systemPadding.top] needs to be changed to 24
+          // TODO: Change to [Offset(tileRenderBox.size.width / 2, tileRenderBox.size.height / 2] when bug is filed and corrected
           Offset(
               (tileRenderBox.size.width / 2) - (_initialRippleSize / 2),
               (tileRenderBox.size.height / 2) -
