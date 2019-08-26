@@ -10,13 +10,22 @@ import 'holder_classes/color_selection_border_animation_holder.dart';
 
 @immutable
 class RippleColorSelection extends StatefulWidget {
+
+  /// The [ColorSelectionController] that will be used by the actual Widget that
+  /// uses [RippleColorSelection]
   final ColorSelectionController controller;
+
+  /// The clickable [ColorSelectionTile] that will be rendered by the [RippleColorSelection] Widget
   final TileBuilder tileBuilder;
+
+  /// The ripple [ColorSelectionTile] that will expand after an onClick of the [tileBuilder]
   final TileBuilder rippleTileBuilder;
 
+  /// The duration the [rippleTileBuilder] Tile will need to expand fully
   final Duration rippleExpandDuration;
 
-  static TileBuilder b = (key, color, animation, value, onTap) {
+  // This is currently needed to copy the [tileBuilder] to [rippleTileBuilder]
+  static TileBuilder _b = (key, color, animation, value, onTap) {
     return CircleTile(
       key: key,
       color: color,
@@ -26,16 +35,29 @@ class RippleColorSelection extends StatefulWidget {
     );
   };
 
+  /// The standard [RippleColorSelection] Widget
+  /// It will render the [CircleTile] as the clickable and ripple Tile
+  ///
+  /// For an example see https://github.com/kiesman99/ripple_color_selection/blob/master/example/lib/full_page.dart
   RippleColorSelection({@required this.controller, this.rippleExpandDuration = const Duration(seconds: 1)})
-      : this.tileBuilder = b,
-        this.rippleTileBuilder = b;
+      : this.tileBuilder = _b,
+        this.rippleTileBuilder = _b;
 
+  /// In this [RippleColorSelection] Widget you can specify the clickable [ColorSelectionTile]
+  ///
+  /// The tile expanding when a Tile was clicked is the same as the one passed in [tileBuilder]
+  ///
+  /// For an example see https://github.com/kiesman99/ripple_color_selection/blob/master/example/lib/custom_tile_page.dart
   RippleColorSelection.customTile({
     @required this.controller,
     @required this.tileBuilder,
     this.rippleExpandDuration = const Duration(seconds: 1)
   }) : this.rippleTileBuilder = tileBuilder;
 
+  /// In this [RippleColorSelection] Widget you can specify the clickable [ColorSelectionTile] and also
+  /// the expanding tile when one of the items were clicked
+  ///
+  /// For an example see https://github.com/kiesman99/ripple_color_selection/blob/master/example/lib/fully_custom_page.dart
   RippleColorSelection.custom(
       {@required this.controller,
       @required this.tileBuilder,
