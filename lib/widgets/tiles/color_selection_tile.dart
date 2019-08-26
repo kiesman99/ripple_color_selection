@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ripple_color_selection/controller/color_selection_controller.dart';
 import 'package:ripple_color_selection/holder_classes/color_selection_border_animation_holder.dart';
 
+// TODO: simplify the parameters that need to be passed
 typedef TileBuilder<Tile extends ColorSelectionTile> = Tile Function(
     GlobalKey key,
     Color color,
@@ -51,6 +52,7 @@ abstract class ColorSelectionTile extends StatelessWidget {
           path: path
       );
 
+  /// This is the path that will be rendered as the tile
   Path get path;
 
   ColorSelectionTile({
