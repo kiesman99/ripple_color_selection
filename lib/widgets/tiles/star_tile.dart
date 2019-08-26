@@ -32,13 +32,15 @@ class StarTile extends ColorSelectionTile {
     @required Function onTap,
     @required ColorSelectionBorderAnimationHolder borderAnimation,
     @required ColorSelectionValue colorSelectionValue,
-    @required GlobalKey key
+    @required GlobalKey key,
+    bool hasShadow = true
   }) : super(
       color: color,
       onTap: onTap,
       key: key,
       borderAnimation: borderAnimation,
-      colorSelectionValue: colorSelectionValue
+      colorSelectionValue: colorSelectionValue,
+      hasShadow: hasShadow
   );
 
 }

@@ -22,6 +22,7 @@ class FullyCustomPage extends StatelessWidget {
                 borderAnimation: holder,
                 colorSelectionValue: value,
                 key: key,
+                hasShadow: false,
               );
             },
           rippleTileBuilder: (key, color, holder, value, onTap){

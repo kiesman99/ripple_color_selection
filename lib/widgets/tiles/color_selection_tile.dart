@@ -45,8 +45,12 @@ abstract class ColorSelectionTile extends StatelessWidget {
 
   double get padding;
 
+  /// Specifies if the [ColorSelectionTile] should habe a shadow or not
+  final bool hasShadow;
+
   _ClipperBorder get border =>
       _ClipperBorder(
+          hasShadow: hasShadow,
           borderWidth: borderAnimation.animation.value,
           elevation: colorSelectionValue.selectedColor == color ? 0.0 : 2.0,
           path: path
@@ -60,7 +64,8 @@ abstract class ColorSelectionTile extends StatelessWidget {
     @required this.key,
     @required this.borderAnimation,
     @required this.colorSelectionValue,
-    @required this.onTap
+    @required this.onTap,
+    @required this.hasShadow
   }) :
         super(key: key);
 
@@ -113,11 +118,13 @@ class _ClipperBorder extends CustomPainter {
   final Path path;
   final Color borderColor;
   final PaintingStyle borderPaintingSytle;
+  final bool hasShadow;
 
   _ClipperBorder({
     @required this.borderWidth,
     @required this.elevation,
     @required this.path,
+    @required this.hasShadow,
     this.borderColor = Colors.white,
     this.borderPaintingSytle = PaintingStyle.stroke
   });
@@ -129,12 +136,14 @@ class _ClipperBorder extends CustomPainter {
       ..color = borderColor
       ..style = borderPaintingSytle;
 
-    Paint shadow = new Paint()
-    ..style = PaintingStyle.fill
-    ..color = Colors.black
-    ..maskFilter = MaskFilter.blur(BlurStyle.normal, elevation);
+    if(hasShadow){
+      Paint shadow = new Paint()
+        ..style = PaintingStyle.fill
+        ..color = Colors.black
+        ..maskFilter = MaskFilter.blur(BlurStyle.normal, elevation);
 
-    canvas.drawPath(path, shadow);
+      canvas.drawPath(path, shadow);
+    }
 
     if(borderWidth > 0)
       canvas.drawPath(path, border);
