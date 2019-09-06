@@ -16,7 +16,7 @@ class FullyCustomPage extends StatelessWidget {
             rippleExpandDuration: const Duration(seconds: 10),
             controller: _controller,
             tileBuilder: (key, color, holder, value, onTap){
-              return StarTile(
+              return RectangleTile(
                 color: color,
                 onTap: onTap,
                 borderAnimation: holder,
@@ -26,7 +26,7 @@ class FullyCustomPage extends StatelessWidget {
               );
             },
           rippleTileBuilder: (key, color, holder, value, onTap){
-            return RectangleTile(
+            return StarTile(
               color: color,
               onTap: onTap,
               borderAnimation: holder,

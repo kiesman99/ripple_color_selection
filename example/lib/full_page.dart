@@ -22,5 +22,4 @@ class FullPage extends StatelessWidget {
     return "FullPage Selector";
   }
 
-
 }
