@@ -23,8 +23,6 @@ typedef TileBuilder<Tile extends ColorSelectionTile> = Tile Function(
 /// create the ripple effect
 abstract class ColorSelectionTile extends StatelessWidget {
 
-
-
   // Size of a tile
   Size get size => new Size(50.0, 50.0);
 
