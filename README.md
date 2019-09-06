@@ -2,7 +2,7 @@
 
 A simple color selection widget with a charming ripple effect
 
-![Standard Widget|1080×2160, 20%](./pub_assets/ripple_color_standard.gif)
+<img src="./pub_assets/ripple_color_standard.gif" alt="Standard Widget" style="max-width: 25%;" />
 
 ```dart
 class FullPage extends StatelessWidget {
