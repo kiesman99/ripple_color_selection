@@ -24,6 +24,9 @@ class RippleColorSelection extends StatefulWidget {
   /// The duration the [rippleTileBuilder] Tile will need to expand fully
   final Duration rippleExpandDuration;
 
+  /// The colors that will be selectable inside of the widget
+  final List<Color> colors;
+
   // This is currently needed to copy the [tileBuilder] to [rippleTileBuilder]
   static TileBuilder _b = (key, color, animation, value, onTap) {
     return CircleTile(
@@ -39,7 +42,7 @@ class RippleColorSelection extends StatefulWidget {
   /// It will render the [CircleTile] as the clickable and ripple Tile
   ///
   /// For an example see https://github.com/kiesman99/ripple_color_selection/blob/master/example/lib/full_page.dart
-  RippleColorSelection({@required this.controller, this.rippleExpandDuration = const Duration(seconds: 1)})
+  RippleColorSelection({this.colors = Colors.primaries, @required this.controller, this.rippleExpandDuration = const Duration(seconds: 1)})
       : this.tileBuilder = _b,
         this.rippleTileBuilder = _b;
 
@@ -49,6 +52,7 @@ class RippleColorSelection extends StatefulWidget {
   ///
   /// For an example see https://github.com/kiesman99/ripple_color_selection/blob/master/example/lib/custom_tile_page.dart
   RippleColorSelection.customTile({
+    this.colors = Colors.primaries,
     @required this.controller,
     @required this.tileBuilder,
     this.rippleExpandDuration = const Duration(seconds: 1)
@@ -59,7 +63,8 @@ class RippleColorSelection extends StatefulWidget {
   ///
   /// For an example see https://github.com/kiesman99/ripple_color_selection/blob/master/example/lib/fully_custom_page.dart
   RippleColorSelection.custom(
-      {@required this.controller,
+      {this.colors = Colors.primaries,
+        @required this.controller,
       @required this.tileBuilder,
       this.rippleExpandDuration = const Duration(seconds: 1),
       @required this.rippleTileBuilder});
@@ -80,7 +85,7 @@ class RippleColorSelectionState extends State<RippleColorSelection>
   Animation<double> _backgroundRippleSizeAnimation;
 
   /// The Colors available for selection
-  static List<Color> get colors => Colors.primaries;
+  static List<Color> get colors => widget.colors;
 
   /// The actual offset where the user tapped a color,
   /// so that the ripple animation can start underneath the
