@@ -2,7 +2,7 @@
 
 A simple color selection widget with a charming ripple effect
 
-![Standard Widget](./pub_assets/ripple_color_standard.gif)
+![Standard Widget](./pub_assets/ripple_color_standard.gif | width=100)
 
 ```dart
 class FullPage extends StatelessWidget {
@@ -24,7 +24,7 @@ class FullPage extends StatelessWidget {
 
 You can also create your own custom tile:
 
-![Custom Tile](./pub_assets/ripple_color_custom.gif)
+![Custom Tile](./pub_assets/ripple_color_custom.gif | width=100)
 
 ```dart
 import 'package:flutter/material.dart';
@@ -106,7 +106,7 @@ class CustomTilePage extends StatelessWidget {
 
 You're even able to go fully crazy and define a custom ripple :o
 
-![Standard Widget](./pub_assets/ripple_color_custom_ripple.gif)
+![Standard Widget](./pub_assets/ripple_color_custom_ripple.gif | width=100)
 
 ```dart
 /// This page has a [CircleTile] as tapable widget
