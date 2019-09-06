@@ -85,7 +85,7 @@ class RippleColorSelectionState extends State<RippleColorSelection>
   Animation<double> _backgroundRippleSizeAnimation;
 
   /// The Colors available for selection
-  static List<Color> get colors => widget.colors;
+  List<Color> get colors => widget.colors;
 
   /// The actual offset where the user tapped a color,
   /// so that the ripple animation can start underneath the
