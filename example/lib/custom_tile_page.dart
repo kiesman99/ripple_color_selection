@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ripple_color_selection/ripple_color_selection.dart';
 
 class CustomTilePage extends StatelessWidget {
-  ColorSelectionController _controller = new ColorSelectionController();
+  final ColorSelectionController _controller = new ColorSelectionController();
 
   @override
   Widget build(BuildContext context) {

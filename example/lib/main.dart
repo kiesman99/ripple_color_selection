@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  List<Widget> pages = [
+  static List<Widget> pages = [
     FullPage(),
     CustomTilePage(),
     FullyCustomPage(),

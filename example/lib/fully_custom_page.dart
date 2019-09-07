@@ -5,7 +5,7 @@ import 'package:ripple_color_selection/ripple_color_selection.dart';
 /// and a [RectangleTile] as the expanding widget, that
 /// will grow underneath the clicked color
 class FullyCustomPage extends StatelessWidget {
-  ColorSelectionController _controller = new ColorSelectionController();
+  final ColorSelectionController _controller = new ColorSelectionController();
 
   @override
   Widget build(BuildContext context) {
