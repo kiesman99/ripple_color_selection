@@ -12,7 +12,7 @@ class FullyCustomPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: RippleColorSelection.custom(
-          rippleExpandDuration: const Duration(seconds: 10),
+          rippleExpandDuration: const Duration(milliseconds: 1500),
           controller: _controller,
           tileBuilder: (key, color, holder, value, onTap) {
             return RectangleTile(
