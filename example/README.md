@@ -3,9 +3,9 @@
 This is a simple example of the Usage of the ripple_color_selection Library.
 You can find the full code of this package and it's examples on github.
 
-![Standard Widget](../pub_assets/ripple_color_standard_listener.gif)
+![Selection With Listener](../pub_assets/ripple_color_selection_listener.gif)
 
-```dart`
+```dart
 class ColorSelectionPageWithListener extends StatefulWidget {
   @override
   _ColorSelectionPageWithListenerState createState() => _ColorSelectionPageWithListenerState();
