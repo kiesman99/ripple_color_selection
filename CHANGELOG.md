@@ -1,3 +1,13 @@
+## [0.0.3] - 2019-09-06
+
+* Updated broken Link in README
+* Added TODOs in README
+* Added license to README
+* Added README to example
+* Added some showcase git to example
+* Resized gifs
+* formated all files with "flutter format"
+
 ## [0.0.2] - 2019-09-06
 
 * Added a README file

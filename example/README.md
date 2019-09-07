@@ -1,16 +1,63 @@
-# example
+# Example
 
-An example for the ripple_color_selection library
+This is a simple example of the Usage of the ripple_color_selection Library.
+You can find the full code of this package and it's examples on github.
 
-## Getting Started
+![Standard Widget](../pub_assets/ripple_color_standard_listener.gif)
 
-This project is a starting point for a Flutter application.
+```dart`
+class ColorSelectionPageWithListener extends StatefulWidget {
+  @override
+  _ColorSelectionPageWithListenerState createState() => _ColorSelectionPageWithListenerState();
 
-A few resources to get you started if this is your first Flutter project:
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.debug}) {
+    return "Page with listener";
+  }
+}
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+class _ColorSelectionPageWithListenerState extends State<ColorSelectionPageWithListener> {
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  ColorSelectionController _colorSelectionController;
+
+  @override
+  void initState() {
+    _colorSelectionController = new ColorSelectionController();
+    _colorSelectionController.addListener(() {
+      setState(() {
+
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Sampletext"),
+      ),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Flexible(
+              child: RippleColorSelection(
+                controller: _colorSelectionController,
+                colors: [
+                  Colors.blue,
+                  Colors.pink,
+                  Colors.yellow,
+                  Colors.green,
+                  Colors.blue
+                ],
+              ),
+            ),
+            Text(_colorSelectionController.value.selectedColor.toString(), style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+

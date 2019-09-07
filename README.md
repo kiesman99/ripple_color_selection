@@ -2,7 +2,7 @@
 
 A simple color selection widget with a charming ripple effect
 
-<img src="./pub_assets/ripple_color_standard.gif" alt="Standard Widget" style="max-width: 25%;" />
+![Standard Widget](./pub_assets/ripple_color_standard.gif)
 
 ```dart
 class FullPage extends StatelessWidget {
@@ -24,7 +24,7 @@ class FullPage extends StatelessWidget {
 
 You can also create your own custom tile:
 
-![Custom Tile|1080×2160, 20%](./pub_assets/ripple_color_custom.gif)
+![Custom Tile](./pub_assets/ripple_color_custom.gif)
 
 ```dart
 import 'package:flutter/material.dart';
@@ -106,7 +106,7 @@ class CustomTilePage extends StatelessWidget {
 
 You're even able to go fully crazy and define a custom ripple :o
 
-![Standard Widget|1080×2160, 20%](./pub_assets/ripple_color_custom_ripple.gif)
+![Standard Widget](./pub_assets/ripple_color_custom_ripple.gif)
 
 ```dart
 /// This page has a [CircleTile] as tapable widget
@@ -147,4 +147,41 @@ class FullyCustomPage extends StatelessWidget {
     );
   }
 }
+```
+
+
+# TODO
+
+[] Make Widget working in Column without flexible
+[] Make Widget not consume full height
+[] Add some more tests
+[] Make the Tilebuilder more simple
+[] Make the Ripplebuilder more simple
+[] Use a better method to draw border around tiles
+[] Write some more examples
+
+# License
+
+```
+MIT License
+
+Copyright (c) 2019 Justin Vietz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
