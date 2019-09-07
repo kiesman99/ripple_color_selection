@@ -152,13 +152,13 @@ class FullyCustomPage extends StatelessWidget {
 
 # TODO
 
-[] Make Widget working in Column without flexible
-[] Make Widget not consume full height
-[] Add some more tests
-[] Make the Tilebuilder more simple
-[] Make the Ripplebuilder more simple
-[] Use a better method to draw border around tiles
-[] Write some more examples
+- [ ] Make Widget working in Column without flexible
+- [ ] Make Widget not consume full height
+- [ ] Add some more tests
+- [ ] Make the Tilebuilder more simple
+- [ ] Make the Ripplebuilder more simple
+- [ ] Use a better method to draw border around tiles
+- [ ] Write some more examples
 
 # License
 

@@ -1,3 +1,8 @@
+## [0.0.4] - 2019-09-07
+
+* Corrected formatting of checkboxes in readme
+* Corrected wrong resizing of gifs
+
 ## [0.0.3] - 2019-09-06
 
 * Updated broken Link in README
