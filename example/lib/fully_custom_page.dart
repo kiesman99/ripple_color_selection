@@ -5,7 +5,6 @@ import 'package:ripple_color_selection/ripple_color_selection.dart';
 /// and a [RectangleTile] as the expanding widget, that
 /// will grow underneath the clicked color
 class FullyCustomPage extends StatelessWidget {
-
   ColorSelectionController _controller = new ColorSelectionController();
 
   @override
@@ -13,19 +12,19 @@ class FullyCustomPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: RippleColorSelection.custom(
-            rippleExpandDuration: const Duration(seconds: 10),
-            controller: _controller,
-            tileBuilder: (key, color, holder, value, onTap){
-              return RectangleTile(
-                color: color,
-                onTap: onTap,
-                borderAnimation: holder,
-                colorSelectionValue: value,
-                key: key,
-                hasShadow: false,
-              );
-            },
-          rippleTileBuilder: (key, color, holder, value, onTap){
+          rippleExpandDuration: const Duration(seconds: 10),
+          controller: _controller,
+          tileBuilder: (key, color, holder, value, onTap) {
+            return RectangleTile(
+              color: color,
+              onTap: onTap,
+              borderAnimation: holder,
+              colorSelectionValue: value,
+              key: key,
+              hasShadow: false,
+            );
+          },
+          rippleTileBuilder: (key, color, holder, value, onTap) {
             return StarTile(
               color: color,
               onTap: onTap,

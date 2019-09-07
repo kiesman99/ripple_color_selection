@@ -10,8 +10,7 @@ typedef TileBuilder<Tile extends ColorSelectionTile> = Tile Function(
     Color color,
     ColorSelectionBorderAnimationHolder borderAnimation,
     ColorSelectionValue colorSelectionValue,
-    Function onTap
-    );
+    Function onTap);
 
 /// You should use the [color] value to assign the color to the tile
 ///
@@ -22,7 +21,6 @@ typedef TileBuilder<Tile extends ColorSelectionTile> = Tile Function(
 /// this key is used to determine the offset of the rendered widget to
 /// create the ripple effect
 abstract class ColorSelectionTile extends StatelessWidget {
-
   // Size of a tile
   Size get size => new Size(50.0, 50.0);
 
@@ -46,26 +44,23 @@ abstract class ColorSelectionTile extends StatelessWidget {
   /// Specifies if the [ColorSelectionTile] should habe a shadow or not
   final bool hasShadow;
 
-  _ClipperBorder get border =>
-      _ClipperBorder(
-          hasShadow: hasShadow,
-          borderWidth: borderAnimation.animation.value,
-          elevation: colorSelectionValue.selectedColor == color ? 0.0 : 2.0,
-          path: path
-      );
+  _ClipperBorder get border => _ClipperBorder(
+      hasShadow: hasShadow,
+      borderWidth: borderAnimation.animation.value,
+      elevation: colorSelectionValue.selectedColor == color ? 0.0 : 2.0,
+      path: path);
 
   /// This is the path that will be rendered as the tile
   Path get path;
 
-  ColorSelectionTile({
-    @required this.color,
-    @required this.key,
-    @required this.borderAnimation,
-    @required this.colorSelectionValue,
-    @required this.onTap,
-    @required this.hasShadow
-  }) :
-        super(key: key);
+  ColorSelectionTile(
+      {@required this.color,
+      @required this.key,
+      @required this.borderAnimation,
+      @required this.colorSelectionValue,
+      @required this.onTap,
+      @required this.hasShadow})
+      : super(key: key);
 
   /// This will give the Tile information on wether it should render it's
   /// border or not
@@ -76,41 +71,30 @@ abstract class ColorSelectionTile extends StatelessWidget {
       color: color,
       child: InkWell(
           onTap: onTap,
-          child: SizedBox.fromSize(size: size,)),
+          child: SizedBox.fromSize(
+            size: size,
+          )),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-
-    if(borderAnimation == null)
-      return ClipPath(
-          clipper: customClipper,
-          child: actualTile
-      );
+    if (borderAnimation == null)
+      return ClipPath(clipper: customClipper, child: actualTile);
 
     return Padding(
         padding: EdgeInsets.all(padding),
         child: AnimatedBuilder(
           animation: borderAnimation.controller,
-          builder: (_, child){
-            return CustomPaint(
-              painter: border,
-              size: size,
-              child: child
-            );
+          builder: (_, child) {
+            return CustomPaint(painter: border, size: size, child: child);
           },
-          child: ClipPath(
-              clipper: customClipper,
-              child: actualTile
-          ),
-        )
-    );
+          child: ClipPath(clipper: customClipper, child: actualTile),
+        ));
   }
 }
 
 class _ClipperBorder extends CustomPainter {
-
   final double borderWidth;
   final double elevation;
   final Path path;
@@ -118,14 +102,13 @@ class _ClipperBorder extends CustomPainter {
   final PaintingStyle borderPaintingSytle;
   final bool hasShadow;
 
-  _ClipperBorder({
-    @required this.borderWidth,
-    @required this.elevation,
-    @required this.path,
-    @required this.hasShadow,
-    this.borderColor = Colors.white,
-    this.borderPaintingSytle = PaintingStyle.stroke
-  });
+  _ClipperBorder(
+      {@required this.borderWidth,
+      @required this.elevation,
+      @required this.path,
+      @required this.hasShadow,
+      this.borderColor = Colors.white,
+      this.borderPaintingSytle = PaintingStyle.stroke});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -134,7 +117,7 @@ class _ClipperBorder extends CustomPainter {
       ..color = borderColor
       ..style = borderPaintingSytle;
 
-    if(hasShadow){
+    if (hasShadow) {
       Paint shadow = new Paint()
         ..style = PaintingStyle.fill
         ..color = Colors.black
@@ -143,24 +126,19 @@ class _ClipperBorder extends CustomPainter {
       canvas.drawPath(path, shadow);
     }
 
-    if(borderWidth > 0)
-      canvas.drawPath(path, border);
+    if (borderWidth > 0) canvas.drawPath(path, border);
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
     return true;
   }
-
 }
 
 class Clipper extends CustomClipper<Path> {
-
   final Path path;
 
-  Clipper({
-    @required this.path
-  });
+  Clipper({@required this.path});
 
   @override
   Path getClip(Size size) {
@@ -171,5 +149,4 @@ class Clipper extends CustomClipper<Path> {
   bool shouldReclip(CustomClipper<Path> oldClipper) {
     return false;
   }
-
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ripple_color_selection/ripple_color_selection.dart';
 
 class CustomTilePage extends StatelessWidget {
-
   ColorSelectionController _controller = new ColorSelectionController();
 
   @override
@@ -12,7 +11,7 @@ class CustomTilePage extends StatelessWidget {
         child: RippleColorSelection.customTile(
             rippleExpandDuration: const Duration(milliseconds: 1500),
             controller: _controller,
-            tileBuilder: (key, color, holder, value, onTap){
+            tileBuilder: (key, color, holder, value, onTap) {
               return RectangleTile(
                 color: color,
                 onTap: onTap,
@@ -20,8 +19,7 @@ class CustomTilePage extends StatelessWidget {
                 colorSelectionValue: value,
                 key: key,
               );
-            }
-        ),
+            }),
       ),
     );
   }

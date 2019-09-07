@@ -10,7 +10,6 @@ import 'holder_classes/color_selection_border_animation_holder.dart';
 
 @immutable
 class RippleColorSelection extends StatefulWidget {
-
   /// The [ColorSelectionController] that will be used by the actual Widget that
   /// uses [RippleColorSelection]
   final ColorSelectionController controller;
@@ -42,7 +41,10 @@ class RippleColorSelection extends StatefulWidget {
   /// It will render the [CircleTile] as the clickable and ripple Tile
   ///
   /// For an example see https://github.com/kiesman99/ripple_color_selection/blob/master/example/lib/full_page.dart
-  RippleColorSelection({this.colors = Colors.primaries, @required this.controller, this.rippleExpandDuration = const Duration(seconds: 1)})
+  RippleColorSelection(
+      {this.colors = Colors.primaries,
+      @required this.controller,
+      this.rippleExpandDuration = const Duration(seconds: 1)})
       : this.tileBuilder = _b,
         this.rippleTileBuilder = _b;
 
@@ -51,12 +53,12 @@ class RippleColorSelection extends StatefulWidget {
   /// The tile expanding when a Tile was clicked is the same as the one passed in [tileBuilder]
   ///
   /// For an example see https://github.com/kiesman99/ripple_color_selection/blob/master/example/lib/custom_tile_page.dart
-  RippleColorSelection.customTile({
-    this.colors = Colors.primaries,
-    @required this.controller,
-    @required this.tileBuilder,
-    this.rippleExpandDuration = const Duration(seconds: 1)
-  }) : this.rippleTileBuilder = tileBuilder;
+  RippleColorSelection.customTile(
+      {this.colors = Colors.primaries,
+      @required this.controller,
+      @required this.tileBuilder,
+      this.rippleExpandDuration = const Duration(seconds: 1)})
+      : this.rippleTileBuilder = tileBuilder;
 
   /// In this [RippleColorSelection] Widget you can specify the clickable [ColorSelectionTile] and also
   /// the expanding tile when one of the items were clicked
@@ -64,7 +66,7 @@ class RippleColorSelection extends StatefulWidget {
   /// For an example see https://github.com/kiesman99/ripple_color_selection/blob/master/example/lib/fully_custom_page.dart
   RippleColorSelection.custom(
       {this.colors = Colors.primaries,
-        @required this.controller,
+      @required this.controller,
       @required this.tileBuilder,
       this.rippleExpandDuration = const Duration(seconds: 1),
       @required this.rippleTileBuilder});
@@ -144,8 +146,8 @@ class RippleColorSelectionState extends State<RippleColorSelection>
       return ColorSelectionBorderAnimationHolder(controller, animation);
     });
 
-    _backgroundRippleAnimation =
-        new AnimationController(vsync: this, duration: widget.rippleExpandDuration);
+    _backgroundRippleAnimation = new AnimationController(
+        vsync: this, duration: widget.rippleExpandDuration);
 
     _backgroundRippleSizeAnimation = new Tween<double>(begin: 0.0, end: 100.0)
         .animate(_backgroundRippleAnimation);
@@ -202,14 +204,9 @@ class RippleColorSelectionState extends State<RippleColorSelection>
               builder: (context, child) {
                 // TODO: Make expanding relative to parent size. Currently the size the ripple will expand to is given by constant values -> make dynamic
                 return Transform.scale(
-                  scale: _backgroundRippleSizeAnimation.value,
-                  child: widget.rippleTileBuilder(
-                      null,
-                      _value.selectedColor,
-                      null,
-                      _value,
-                          null)
-                );
+                    scale: _backgroundRippleSizeAnimation.value,
+                    child: widget.rippleTileBuilder(
+                        null, _value.selectedColor, null, _value, null));
               },
             ),
             builder: (context, value, child) {
@@ -271,7 +268,7 @@ class RippleColorSelectionState extends State<RippleColorSelection>
   @override
   void dispose() {
     _backgroundRippleAnimation.dispose();
-    for(ColorSelectionBorderAnimationHolder holder in _borderAnimations)
+    for (ColorSelectionBorderAnimationHolder holder in _borderAnimations)
       holder.controller.dispose();
     super.dispose();
   }

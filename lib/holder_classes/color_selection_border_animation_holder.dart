@@ -4,10 +4,8 @@ import 'package:flutter/animation.dart' show AnimationController, Animation;
 ///
 /// It is used to declutter the use of a Map<String, dynamic>
 class ColorSelectionBorderAnimationHolder {
-
   AnimationController controller;
   Animation animation;
 
   ColorSelectionBorderAnimationHolder(this.controller, this.animation);
-
 }

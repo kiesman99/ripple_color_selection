@@ -5,7 +5,6 @@ import 'package:ripple_color_selection/ripple_color_selection.dart';
 class FullPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     ColorSelectionController _controller = new ColorSelectionController();
 
     return Scaffold(
@@ -21,5 +20,4 @@ class FullPage extends StatelessWidget {
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.debug}) {
     return "FullPage Selector";
   }
-
 }

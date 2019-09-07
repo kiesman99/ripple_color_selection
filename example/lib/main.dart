@@ -3,6 +3,8 @@ import 'package:example/full_page.dart';
 import 'package:example/fully_custom_page.dart';
 import 'package:flutter/material.dart';
 
+import 'listen_on_selection_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -29,35 +31,29 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-
   List<Widget> pages = [
     FullPage(),
     CustomTilePage(),
-    FullyCustomPage()
+    FullyCustomPage(),
+    ColorSelectionPageWithListener()
   ];
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: ListView.builder(
-          itemCount: pages.length,
-          itemBuilder: (_, position){
-            return ListTile(
-              title: Text(pages.elementAt(position).toString()),
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => pages.elementAt(position)
-                ));
-              },
-            );
-          },
-        )
-      ),
+          child: ListView.builder(
+        itemCount: pages.length,
+        itemBuilder: (_, position) {
+          return ListTile(
+            title: Text(pages.elementAt(position).toString()),
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => pages.elementAt(position)));
+            },
+          );
+        },
+      )),
     );
   }
 }
-
-
-
